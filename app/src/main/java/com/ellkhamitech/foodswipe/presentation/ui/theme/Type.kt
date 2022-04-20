@@ -1,4 +1,4 @@
-package com.ellkhamitech.foodswipe.ui.theme
+package com.ellkhamitech.foodswipe.presentation.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
