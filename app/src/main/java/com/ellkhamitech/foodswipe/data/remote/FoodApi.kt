@@ -1,7 +1,6 @@
 package com.ellkhamitech.foodswipe.data.remote
 
-import com.ellkhamitech.foodswipe.data.model.Categories
-import retrofit2.Response
+import com.ellkhamitech.foodswipe.data.model.Category
 import retrofit2.http.GET
 
 /**
@@ -9,7 +8,7 @@ import retrofit2.http.GET
  */
 interface FoodApi {
     @GET(".")
-    suspend fun getFoodCategories(): Response<Categories>
+    suspend fun getFoodCategories(): List<Category>
 
     //Base URL should be added to local.properties file but its here as its demo.
     companion object {
