@@ -15,7 +15,7 @@ object FoodCategoriesAfterMappingStub {
         id = "1",
         name = "Orange",
         salePrice = salePrice,
-        url = "http://mobcategories.s3-website-eu-west-1.amazonaws.com//image.jpg"
+        url = "http://mobcategories.s3-website-eu-west-1.amazonaws.com/image.jpg"
     )
     private val product2 = Product(
         "1",
@@ -23,12 +23,12 @@ object FoodCategoriesAfterMappingStub {
         "2",
         "Apple",
         salePrice,
-        "http://mobcategories.s3-website-eu-west-1.amazonaws.com//image2.jpg"
+        "http://mobcategories.s3-website-eu-west-1.amazonaws.com/image2.jpg"
     )
 
     private val productsList = listOf(product1, product2)
 
-    val foodCategory = FoodCategory("name", productsList)
+    private val foodCategory = FoodCategory("name", productsList)
 
     val foodCategories = listOf(foodCategory)
 

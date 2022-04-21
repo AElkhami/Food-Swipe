@@ -28,7 +28,7 @@ object FoodCategoriesStub {
 
     private val productsList = listOf(product1, product2)
 
-    val foodCategory = FoodCategory("name", productsList)
+    private val foodCategory = FoodCategory("name", productsList)
 
     val foodCategories = listOf(foodCategory)
 

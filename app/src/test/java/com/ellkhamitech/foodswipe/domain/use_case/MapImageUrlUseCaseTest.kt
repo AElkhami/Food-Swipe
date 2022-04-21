@@ -26,9 +26,9 @@ class MapImageUrlUseCaseTest {
 
     @Test
     fun `when mapImageUrlUseCase called return mapped url`() {
-        val foodCategoriesWithMappedUrl = mapImageUrlUseCase(FoodCategoriesStub.foodCategory)
+        val foodCategoriesWithMappedUrl = mapImageUrlUseCase(FoodCategoriesStub.foodCategories)
 
         assertThat(foodCategoriesWithMappedUrl)
-            .isEqualTo(FoodCategoriesAfterMappingStub.foodCategory)
+            .isEqualTo(FoodCategoriesAfterMappingStub.foodCategories)
     }
 }
