@@ -11,7 +11,7 @@ import com.ellkhamitech.foodswipe.domain.repository.FoodRepository
 class FoodRepositoryImpl(
     private val foodApi: FoodApi
 ) : FoodRepository {
-    override suspend fun getFoodRepository(): Result<List<FoodCategory>> {
+    override suspend fun getFoodCategories(): Result<List<FoodCategory>> {
         return try {
             val foodCategories = foodApi.getFoodCategories()
             Result.success(foodCategories.map { it.toFoodCategory() })
