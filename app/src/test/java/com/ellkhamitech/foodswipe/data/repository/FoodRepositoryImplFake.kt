@@ -11,15 +11,18 @@ class FoodRepositoryImplFake : FoodRepository {
 
     private var shouldReturnError = false
 
+    val failureCase = Result.failure<List<FoodCategory>>(Throwable(message = "error"))
+    val successCase = Result.success(FoodCategoriesStub.foodCategories)
+
     fun setReturnError(value: Boolean) {
         shouldReturnError = value
     }
 
     override suspend fun getFoodCategories(): Result<List<FoodCategory>> {
         return if (shouldReturnError) {
-            Result.success(FoodCategoriesStub.foodCategories)
+            failureCase
         } else {
-            Result.failure(Throwable(message = "error"))
+            successCase
         }
     }
 }

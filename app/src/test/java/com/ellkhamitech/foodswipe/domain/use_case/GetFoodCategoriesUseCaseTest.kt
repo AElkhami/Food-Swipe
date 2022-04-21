@@ -2,11 +2,9 @@ package com.ellkhamitech.foodswipe.domain.use_case
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.ellkhamitech.foodswipe.data.repository.FoodRepositoryImplFake
-import com.ellkhamitech.foodswipe.data.stub.FoodCategoriesStub
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.hamcrest.Matchers
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -34,7 +32,7 @@ class GetFoodCategoriesUseCaseTest {
     fun `when getFoodCategoriesUseCase called, expect data`() = runTest {
         val foodCategories = getFoodCategoriesUseCase()
 
-        assertThat(foodCategories, Matchers.samePropertyValuesAs(FoodCategoriesStub.foodCategories))
+        assertThat(foodCategories).isEqualTo(foodRepository.successCase)
     }
 
     @Test
@@ -43,6 +41,6 @@ class GetFoodCategoriesUseCaseTest {
 
         val foodCategories = getFoodCategoriesUseCase()
 
-        assertThat(foodCategories, Throwable(message = "error"))
+        assertThat(foodCategories).isEqualTo(foodRepository.failureCase)
     }
 }
