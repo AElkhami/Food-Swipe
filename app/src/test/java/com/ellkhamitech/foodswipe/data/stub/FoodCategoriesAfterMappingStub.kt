@@ -5,7 +5,7 @@ import com.ellkhamitech.foodswipe.data.model.SalePrice
 import com.ellkhamitech.foodswipe.domain.model.FoodCategory
 
 
-object FoodCategoriesStub {
+object FoodCategoriesAfterMappingStub {
 
     private val salePrice = SalePrice("10", "EGP")
 
@@ -15,7 +15,7 @@ object FoodCategoriesStub {
         id = "1",
         name = "Orange",
         salePrice = salePrice,
-        url = "/image.jpg"
+        url = "http://mobcategories.s3-website-eu-west-1.amazonaws.com//image.jpg"
     )
     private val product2 = Product(
         "1",
@@ -23,7 +23,7 @@ object FoodCategoriesStub {
         "2",
         "Apple",
         salePrice,
-        "/image2.jpg"
+        "http://mobcategories.s3-website-eu-west-1.amazonaws.com//image2.jpg"
     )
 
     private val productsList = listOf(product1, product2)
