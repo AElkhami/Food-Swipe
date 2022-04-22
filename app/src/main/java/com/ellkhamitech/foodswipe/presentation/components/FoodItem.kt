@@ -88,18 +88,11 @@ fun FoodItem(
                     )
                 }
                 Spacer(modifier = Modifier.height(spacing.spaceSmall))
-                Row {
-                    Text(
-                        text = salePrice.amount,
-                        style = MaterialTheme.typography.body2,
-                        color = Color.Gray
-                    )
-                    Text(
-                        text = salePrice.currency,
-                        style = MaterialTheme.typography.body2,
-                        color = Color.Gray
-                    )
-                }
+                Text(
+                    text = "${salePrice.amount} ${salePrice.currency}",
+                    style = MaterialTheme.typography.body2,
+                    color = Color.Gray
+                )
             }
         }
     }

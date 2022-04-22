@@ -14,12 +14,16 @@ data class Dimensions(
     val spaceMedium: Dp = 16.dp,
     val spaceLarge: Dp = 32.dp,
     val spaceExtraLarge: Dp = 64.dp,
+    val spaceDoubleExtraLarge: Dp = 128.dp,
     val userImageSize: Dp = 70.dp,
-    val imageBorderWidth: Dp = 0.8.dp,
+    val imageBorderWidth: Dp = 1.dp,
+    val imageBorderWidthMedium: Dp = 2.dp,
     val foodImageSize: Dp = 100.dp,
+    val foodImageSizeLarge: Dp = 150.dp,
     val foodItemCornerSize: Dp = 28.dp,
     val curvedCornerSize: Dp = 50.dp,
-    val dividerThickness: Dp = 1.dp
+    val dividerThickness: Dp = 1.dp,
+    val foodImageYOffset: Dp = 90.dp
 )
 
 val LocalSpacing = compositionLocalOf { Dimensions() }
