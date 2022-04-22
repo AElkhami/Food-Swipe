@@ -23,7 +23,7 @@ object FoodCategoriesStub {
         "2",
         "Apple",
         salePrice,
-        "/image2.jpg"
+        ""
     )
 
     private val productsList = listOf(product1, product2)
