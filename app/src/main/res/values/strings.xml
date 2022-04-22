@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Food Swipe</string>
+    <string name="hi">Hi, %s</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="arrow_right">Arrow right</string>
+    <string name="user_image">User image</string>
+    <string name="food_image">Food image</string>
+    <string name="categories">Categories</string>
 </resources>
