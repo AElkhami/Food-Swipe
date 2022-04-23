@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
-import androidx.compose.material.rememberScaffoldState
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import coil.annotation.ExperimentalCoilApi
@@ -30,11 +29,8 @@ class MainActivity : ComponentActivity() {
         }
         setContent {
             FoodSwipeTheme {
-                val scaffoldState = rememberScaffoldState()
-
                 Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    scaffoldState = scaffoldState
+                    modifier = Modifier.fillMaxSize()
                 ) {
                     DestinationsNavHost(navGraph = NavGraphs.root)
                 }
