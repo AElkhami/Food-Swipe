@@ -1,4 +1,4 @@
-package com.ellkhamitech.foodswipe.data.repository
+package com.ellkhamitech.foodswipe.data.repository.fake
 
 import com.ellkhamitech.foodswipe.data.stub.FoodCategoriesStub
 import com.ellkhamitech.foodswipe.domain.model.FoodCategory

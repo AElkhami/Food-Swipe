@@ -1,7 +1,7 @@
 package com.ellkhamitech.foodswipe.domain.use_case
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.ellkhamitech.foodswipe.data.repository.FoodRepositoryImplFake
+import com.ellkhamitech.foodswipe.data.repository.fake.FoodRepositoryImplFake
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest

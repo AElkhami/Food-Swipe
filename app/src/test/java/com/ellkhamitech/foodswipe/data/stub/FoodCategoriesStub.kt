@@ -1,32 +1,26 @@
 package com.ellkhamitech.foodswipe.data.stub
 
-import com.ellkhamitech.foodswipe.data.model.Product
 import com.ellkhamitech.foodswipe.data.model.SalePrice
 import com.ellkhamitech.foodswipe.domain.model.FoodCategory
+import com.ellkhamitech.foodswipe.domain.model.FoodProduct
 
 
 object FoodCategoriesStub {
 
     private val salePrice = SalePrice("10", "EGP")
 
-    private val product1 = Product(
-        categoryId = "2",
-        description = "desc",
-        id = "1",
+    private val foodProduct1 = FoodProduct(
         name = "Orange",
         salePrice = salePrice,
         url = "/image.jpg"
     )
-    private val product2 = Product(
-        "1",
-        "dec",
-        "2",
+    private val foodProduct2 = FoodProduct(
         "Apple",
         salePrice,
         ""
     )
 
-    private val productsList = listOf(product1, product2)
+    private val productsList = listOf(foodProduct1, foodProduct2)
 
     private val foodCategory = FoodCategory("name", productsList)
 

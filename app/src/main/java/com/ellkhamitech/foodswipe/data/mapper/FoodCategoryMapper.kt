@@ -6,9 +6,11 @@ import com.ellkhamitech.foodswipe.domain.model.FoodCategory
 /**
  * Created by A.Elkhami on 20,April,2022
  */
-fun Category.toFoodCategory(): FoodCategory{
+fun Category.toFoodCategory(): FoodCategory {
     return FoodCategory(
         name = name,
-        products = products
+        products = products.map {
+            it.toFoodProduct()
+        }
     )
 }
