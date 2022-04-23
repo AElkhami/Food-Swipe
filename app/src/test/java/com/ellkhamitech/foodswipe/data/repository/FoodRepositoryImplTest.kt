@@ -9,6 +9,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.experimental.categories.Categories
 import org.junit.rules.TestRule
 
 /**
@@ -34,5 +35,15 @@ class FoodRepositoryImplTest {
         val categoriesList = foodRepositoryImpl.getFoodCategories()
 
         assertThat(categoriesList).isEqualTo(Result.success(FoodCategoriesStub.foodCategories))
+    }
+
+    @Test
+    fun `when getFoodCategories called return error`() = runTest {
+
+        foodApi.setShouldThrowException(true)
+
+        val categoriesList = foodRepositoryImpl.getFoodCategories()
+
+        assertThat(categoriesList.isFailure).isEqualTo(Result.failure<List<Categories>>(Exception("error")).isFailure)
     }
 }
