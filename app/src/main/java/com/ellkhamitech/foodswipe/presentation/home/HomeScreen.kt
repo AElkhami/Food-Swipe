@@ -23,18 +23,23 @@ import com.ellkhamitech.foodswipe.data.model.SalePrice
 import com.ellkhamitech.foodswipe.domain.model.FoodProduct
 import com.ellkhamitech.foodswipe.presentation.components.FoodItem
 import com.ellkhamitech.foodswipe.presentation.components.TextWithCurvedBackground
+import com.ellkhamitech.foodswipe.presentation.destinations.ProductDetailScreenDestination
 import com.ellkhamitech.foodswipe.presentation.ui.Dimensions
 import com.ellkhamitech.foodswipe.presentation.ui.LocalSpacing
 import com.ellkhamitech.foodswipe.presentation.ui.theme.OffWhiteBackground
 import com.ellkhamitech.foodswipe.presentation.ui.theme.OrangeYellow
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 /**
  * Created by A.Elkhami on 22,April,2022
  */
 @ExperimentalCoilApi
+@Destination(start = true)
 @Composable
 fun HomeScreen(
-    userName: String = "John 117"
+    userName: String = "John 117",
+    navigator: DestinationsNavigator
 ) {
     val spacing = LocalSpacing.current
 
@@ -78,7 +83,8 @@ fun HomeScreen(
                     SalePrice("30", "$"),
                     "http://mobcategories.s3-website-eu-west-1.amazonaws.com/Bread.jpg"
                 )
-            )
+            ),
+            navigator
         )
     }
 }
@@ -164,7 +170,8 @@ fun CategoriesSection(
 @ExperimentalCoilApi
 @Composable
 fun ProductsSection(
-    products: List<FoodProduct>
+    products: List<FoodProduct>,
+    navigator: DestinationsNavigator
 ) {
     LazyColumn {
         items(products.size) {
@@ -172,7 +179,13 @@ fun ProductsSection(
                 foodName = products[it].name,
                 salePrice = products[it].salePrice,
                 url = products[it].url,
-                onClick = {}
+                onClick = {
+                    navigator.navigate(
+                        ProductDetailScreenDestination(
+                            products[it]
+                        )
+                    )
+                }
             )
         }
     }

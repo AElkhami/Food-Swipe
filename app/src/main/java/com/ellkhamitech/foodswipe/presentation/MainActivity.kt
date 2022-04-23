@@ -5,13 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.material.Scaffold
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import coil.annotation.ExperimentalCoilApi
-import com.ellkhamitech.foodswipe.presentation.home.HomeScreen
 import com.ellkhamitech.foodswipe.presentation.ui.theme.FoodSwipeTheme
+import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalCoilApi
@@ -30,11 +30,13 @@ class MainActivity : ComponentActivity() {
         }
         setContent {
             FoodSwipeTheme {
-                Surface(
+                val scaffoldState = rememberScaffoldState()
+
+                Scaffold(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    scaffoldState = scaffoldState
                 ) {
-                    HomeScreen()
+                    DestinationsNavHost(navGraph = NavGraphs.root)
                 }
             }
         }

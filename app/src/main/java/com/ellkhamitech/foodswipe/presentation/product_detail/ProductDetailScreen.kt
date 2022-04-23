@@ -24,15 +24,18 @@ import com.ellkhamitech.foodswipe.domain.model.FoodProduct
 import com.ellkhamitech.foodswipe.presentation.ui.LocalSpacing
 import com.ellkhamitech.foodswipe.presentation.ui.theme.FoodItemBackGround
 import com.ellkhamitech.foodswipe.presentation.ui.theme.OrangeYellow
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 /**
  * Created by A.Elkhami on 22,April,2022
  */
 @ExperimentalCoilApi
+@Destination
 @Composable
 fun ProductDetailScreen(
     product: FoodProduct,
-    onBackClick: () -> Unit
+    navigator: DestinationsNavigator
 ) {
     val spacing = LocalSpacing.current
 
@@ -48,7 +51,7 @@ fun ProductDetailScreen(
                 .padding(start = spacing.spaceLarge, top = spacing.spaceLarge)
                 .clip(CircleShape)
                 .clickable {
-                    onBackClick()
+                    navigator.navigateUp()
                 }
                 .background(FoodItemBackGround)
                 .padding(spacing.spaceMedium)
