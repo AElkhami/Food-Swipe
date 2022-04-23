@@ -70,6 +70,7 @@ fun FoodItem(
                         color = OrangeYellow,
                         shape = CircleShape
                     )
+                    .background(Color.White)
             )
             Column(modifier = Modifier.padding(spacing.spaceMedium)) {
                 Row(
