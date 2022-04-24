@@ -8,10 +8,7 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,6 +18,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.annotation.ExperimentalCoilApi
 import com.ellkhamitech.foodswipe.R
@@ -55,11 +53,14 @@ fun HomeScreen(
     val scaffoldState = rememberScaffoldState()
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
+    var showErrorMessage by remember { mutableStateOf(false) }
 
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
                 is UiEvent.ShowSnackBar -> {
+                    showErrorMessage = true
+
                     scaffoldState.snackbarHostState.showSnackbar(
                         message = event.message.asString(
                             context
@@ -70,33 +71,56 @@ fun HomeScreen(
         }
     }
 
-    Column(modifier = Modifier.background(OffWhiteBackground)) {
-        WelcomeSection(
-            userName = userName,
-            spacing = spacing
-        )
-        Divider(
-            color = OrangeYellow,
-            thickness = spacing.dividerThickness,
-            modifier = Modifier.padding(
-                top = spacing.spaceMedium,
-                bottom = spacing.spaceMedium,
-                start = spacing.spaceLarge,
-                end = spacing.spaceLarge
+    Scaffold(
+        scaffoldState = scaffoldState,
+        modifier = Modifier
+            .fillMaxSize()
+            .background(OffWhiteBackground)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            WelcomeSection(
+                userName = userName,
+                spacing = spacing
             )
-        )
-        CategoriesSection(
-            spacing = spacing,
-            viewModel.state.categoryNames,
-            viewModel,
-            coroutineScope,
-            listState
-        )
-        ProductsSection(
-            viewModel.state.foodProducts,
-            navigator,
-            listState
-        )
+            Divider(
+                color = OrangeYellow,
+                thickness = spacing.dividerThickness,
+                modifier = Modifier.padding(
+                    top = spacing.spaceMedium,
+                    bottom = spacing.spaceMedium,
+                    start = spacing.spaceLarge,
+                    end = spacing.spaceLarge
+                )
+            )
+            CategoriesSection(
+                spacing = spacing,
+                viewModel.state.categoryNames,
+                viewModel,
+                coroutineScope,
+                listState
+            )
+            if (showErrorMessage) {
+                Text(
+                    text = stringResource(id = R.string.response_error),
+                    style = MaterialTheme.typography.h6,
+                    color = Color.Gray,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(
+                        top = spacing.spaceExtraLarge,
+                        start = spacing.spaceLarge,
+                        end = spacing.spaceLarge
+                    )
+                )
+            }
+            ProductsSection(
+                viewModel.state.foodProducts,
+                navigator,
+                listState
+            )
+        }
     }
 }
 
@@ -152,12 +176,6 @@ fun CategoriesSection(
     coroutineScope: CoroutineScope,
     listState: LazyListState
 ) {
-    var selectedIndex by remember {
-        mutableStateOf(0)
-    }
-
-    viewModel.onEvent(HomeEvent.OnCategoryClick(selectedIndex))
-
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -175,10 +193,12 @@ fun CategoriesSection(
             items(categoryNames.size) {
                 TextWithCurvedBackground(
                     name = categoryNames[it],
-                    isSelectedBoolean = selectedIndex == it,
+                    isSelectedBoolean = viewModel.state.selectedIndex == it,
                     onClick = {
-                        selectedIndex = it
-                        viewModel.onEvent(HomeEvent.OnCategoryClick(selectedIndex))
+                        viewModel.state.selectedIndex = it
+
+                        viewModel.onEvent(HomeEvent.OnCategoryClick(viewModel.state.selectedIndex))
+
                         coroutineScope.launch {
                             listState.animateScrollToItem(index = 0)
                         }

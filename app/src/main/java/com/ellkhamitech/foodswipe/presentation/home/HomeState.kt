@@ -9,5 +9,6 @@ import com.ellkhamitech.foodswipe.domain.model.FoodProduct
 data class HomeState(
     val categoryNames : List<String>  = emptyList(),
     val foodCategories: List<FoodCategory> = emptyList(),
-    val foodProducts: List<FoodProduct> = emptyList()
+    val foodProducts: List<FoodProduct> = emptyList(),
+    var selectedIndex: Int = 0
 )

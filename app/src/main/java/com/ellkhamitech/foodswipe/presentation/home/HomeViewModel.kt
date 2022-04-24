@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.ellkhamitech.foodswipe.R
 import com.ellkhamitech.foodswipe.domain.model.FoodCategory
 import com.ellkhamitech.foodswipe.domain.use_case.FoodUseCases
+import com.ellkhamitech.foodswipe.presentation.util.Constants.DefaultCategoryIndex
 import com.ellkhamitech.foodswipe.presentation.util.UiEvent
 import com.ellkhamitech.foodswipe.presentation.util.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -49,7 +50,10 @@ class HomeViewModel @Inject constructor(
                         .onSuccess { categoriesList ->
                             state = state.copy(
                                 foodCategories = foodUseCases.mapImageUrlUseCase(categoriesList),
-                                categoryNames = generateCategoryNamesList(categoriesList)
+                                categoryNames = generateCategoryNamesList(categoriesList),
+                                foodProducts = foodUseCases
+                                    .mapImageUrlUseCase(categoriesList)[DefaultCategoryIndex]
+                                    .products
                             )
                         }
                         .onFailure {
