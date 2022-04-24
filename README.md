@@ -18,7 +18,7 @@ Project is created with:
 * Retrofit
 * OkHttp
 * Coil
-* google splash screen
+* Google splash screen
 	
 ## Architecture
 * MVVM 
