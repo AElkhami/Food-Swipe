@@ -45,7 +45,7 @@ import kotlinx.coroutines.launch
 @Destination(start = true)
 @Composable
 fun HomeScreen(
-    userName: String = "John 117",
+    userName: String = stringResource(id = R.string.user_name),
     navigator: DestinationsNavigator,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
@@ -106,21 +106,7 @@ fun HomeScreen(
                 navigator,
                 listState
             )
-        }
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            when {
-                viewModel.state.isLoading -> CircularProgressIndicator(color = OrangeYellow)
-                viewModel.state.foodCategories.isEmpty() -> {
-                    Text(
-                        text = stringResource(id = R.string.empty_products_message),
-                        style = MaterialTheme.typography.body1,
-                        textAlign = TextAlign.Center
-                    )
-                }
-            }
+            ErrorAndLoadingSection(viewModel)
         }
     }
 }
@@ -231,6 +217,25 @@ fun ProductsSection(
                     )
                 }
             )
+        }
+    }
+}
+
+@Composable
+fun ErrorAndLoadingSection(viewModel: HomeViewModel) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        when {
+            viewModel.state.isLoading -> CircularProgressIndicator(color = OrangeYellow)
+            viewModel.state.foodCategories.isEmpty() -> {
+                Text(
+                    text = stringResource(id = R.string.empty_products_message),
+                    style = MaterialTheme.typography.body1,
+                    textAlign = TextAlign.Center
+                )
+            }
         }
     }
 }
