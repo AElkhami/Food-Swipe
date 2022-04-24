@@ -8,4 +8,5 @@
     <string name="categories">Categories</string>
     <string name="back_arrow">Back arrow</string>
     <string name="response_error">Something went wrong, please try again later.</string>
+    <string name="empty_products_message">There are no products to display.</string>
 </resources>

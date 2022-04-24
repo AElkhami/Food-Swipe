@@ -9,7 +9,9 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -53,14 +55,11 @@ fun HomeScreen(
     val scaffoldState = rememberScaffoldState()
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
-    var showErrorMessage by remember { mutableStateOf(false) }
 
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
                 is UiEvent.ShowSnackBar -> {
-                    showErrorMessage = true
-
                     scaffoldState.snackbarHostState.showSnackbar(
                         message = event.message.asString(
                             context
@@ -102,24 +101,26 @@ fun HomeScreen(
                 coroutineScope,
                 listState
             )
-            if (showErrorMessage) {
-                Text(
-                    text = stringResource(id = R.string.response_error),
-                    style = MaterialTheme.typography.h6,
-                    color = Color.Gray,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(
-                        top = spacing.spaceExtraLarge,
-                        start = spacing.spaceLarge,
-                        end = spacing.spaceLarge
-                    )
-                )
-            }
             ProductsSection(
                 viewModel.state.foodProducts,
                 navigator,
                 listState
             )
+        }
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            when {
+                viewModel.state.isLoading -> CircularProgressIndicator(color = OrangeYellow)
+                viewModel.state.foodCategories.isEmpty() -> {
+                    Text(
+                        text = stringResource(id = R.string.empty_products_message),
+                        style = MaterialTheme.typography.body1,
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
         }
     }
 }

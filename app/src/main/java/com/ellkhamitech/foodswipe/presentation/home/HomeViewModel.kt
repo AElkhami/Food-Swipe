@@ -33,6 +33,7 @@ class HomeViewModel @Inject constructor(
 
     init {
         onEvent(HomeEvent.OnGetFoodCategories)
+        state = state.copy(isLoading = true)
     }
 
     fun onEvent(event: HomeEvent) {
@@ -53,7 +54,8 @@ class HomeViewModel @Inject constructor(
                                 categoryNames = generateCategoryNamesList(categoriesList),
                                 foodProducts = foodUseCases
                                     .mapImageUrlUseCase(categoriesList)[DefaultCategoryIndex]
-                                    .products
+                                    .products,
+                                isLoading = false
                             )
                         }
                         .onFailure {
@@ -62,6 +64,7 @@ class HomeViewModel @Inject constructor(
                                     UiText.StringResource(R.string.response_error)
                                 )
                             )
+                            state = state.copy(isLoading = false)
                         }
                 }
             }

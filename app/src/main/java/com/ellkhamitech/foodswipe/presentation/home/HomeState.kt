@@ -10,5 +10,6 @@ data class HomeState(
     val categoryNames : List<String>  = emptyList(),
     val foodCategories: List<FoodCategory> = emptyList(),
     val foodProducts: List<FoodProduct> = emptyList(),
-    var selectedIndex: Int = 0
+    var selectedIndex: Int = 0,
+    var isLoading: Boolean = false
 )
