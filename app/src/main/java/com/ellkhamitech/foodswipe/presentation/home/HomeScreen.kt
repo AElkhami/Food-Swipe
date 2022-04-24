@@ -45,13 +45,13 @@ import kotlinx.coroutines.launch
 @Destination(start = true)
 @Composable
 fun HomeScreen(
-    userName: String = stringResource(id = R.string.user_name),
     navigator: DestinationsNavigator,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
     val context = LocalContext.current
 
+    val userName: String = stringResource(id = R.string.user_name)
     val scaffoldState = rememberScaffoldState()
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
