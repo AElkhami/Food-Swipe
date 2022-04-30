@@ -39,6 +39,7 @@ class GetFoodCategoriesUseCaseTest {
     @Test
     fun `when getFoodCategoriesUseCase called, expect data`() = runTest {
         val success = Result.success(FoodCategoriesStub.foodCategories)
+
         `when`(foodRepository.getFoodCategories()).thenReturn(success)
 
         val foodCategories = getFoodCategoriesUseCase()
