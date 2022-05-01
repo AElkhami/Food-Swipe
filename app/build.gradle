@@ -108,6 +108,9 @@ dependencies {
     //Mockk
     testImplementation "io.mockk:mockk:1.12.0"
 
+    //Mock Web Server
+    testImplementation "com.squareup.okhttp3:mockwebserver:4.9.3"
+
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'com.google.truth:truth:1.1.3'
     testImplementation "androidx.arch.core:core-testing:2.1.0"
