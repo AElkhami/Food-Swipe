@@ -4,6 +4,7 @@
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Architecture](#architecture)
+* [Branches](#branches)
 
 ## General info
 This project is displaying categorized food products with its details.
@@ -32,3 +33,11 @@ Project is created with:
    - Easy to maintain.
    - The package structure is easier to navigate.
    - Features can be added more easily.
+
+## Branches
+
+There are new branches each of them demonstrates different unit test approach.
+
+- `mockito-unit-test` Creating a unit test using mockito library.
+- `mockk-unit-test` Creating a unit test using mockk library.
+- `mock-web-server-unit-test` Mocking server request while testing the repository.
