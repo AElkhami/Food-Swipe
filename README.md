@@ -1,43 +1,56 @@
-# Food-Swipe
+# ABN Repo Viewer
 
-## Table of contents
-* [General info](#general-info)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
+
+An Android app to browse and explore GitHub public repositories, with offline caching for seamless access.
+
+## Table of Contents
+* [General Info](#general-info)
+* [Features](#features)
 * [Technologies](#technologies)
 * [Architecture](#architecture)
-* [Branches](#branches)
+* [Modularization Strategy](#modularization-strategy)
 
-## General info
-This project is displaying categorized food products with its details.
-	
+## General Info
+**ABN Repo Viewer** is an Android application that allows users to:
+- Browse public GitHub repositories.
+- View detailed repository information.
+- Access repositories offline with caching support.
+
+## Features
+- **Browse**: Find public GitHub repositories with a seamless search experience.  
+- **Repository Details**: View detailed repository information, including description and more.  
+- **Offline Caching**: The app automatically caches repositories, allowing offline access.  
+- **Smart Connectivity Handling**:  
+  - Detects when the device is offline and retrieves data from cache.  
+  - Monitors network status and automatically fetches fresh data when the connection is restored.  
+- **Open in Browser**: Easily open repositories directly in your web browser from within the app.  
+- **Modern UI**: Built with Jetpack Compose for a responsive, sleek, and intuitive user experience.  
+
 ## Technologies
-Project is created with:
-* Kotlin
-* Coroutines
-* Flow
-* Compose
-* Hilt
-* Retrofit
-* OkHttp
-* Coil
-* Google splash screen
-	
+The app is built using modern Android development tools and practices:
+
+- **Kotlin**: For concise and expressive code.
+- **Coroutines & Flow**: For efficient asynchronous programming.
+- **Jetpack Compose**: For building declarative UI.
+- **Koin**: Dependency injection, facilitating potential migration to Kotlin Multiplatform Mobile (KMM).
+- **Ktor**: Networking library, enabling seamless migration to KMM in the future.
+- **Coil**: Efficient image loading optimized for Android.
+
 ## Architecture
-* MVVM 
-  - The view model hold's the UI data while surviving configuration changes.
-  - View model lets you do the separation by adding all the UI related variables, logic and data
-    into the view model, while the Activity/Fragment will be only responsible for drawing the UI on the screen
-    and receive user interactions.
-* Clean Architecture
-   - It makes the code easily testable.
-   - Code is further decoupled.
-   - Easy to maintain.
-   - The package structure is easier to navigate.
-   - Features can be added more easily.
+The app is built following the **MVVM** pattern and **Clean Architecture** principles:
 
-## Branches
+- **MVVM (Model-View-ViewModel)**:
+  - ViewModel holds UI data and survives configuration changes.
+  - Separation of concerns: UI logic resides in ViewModel, while Activities/Fragments handle UI rendering and user interactions.
 
-There are new branches each of them demonstrates different unit test approach.
+- **Clean Architecture**:
+  - Improved testability and maintainability.
+  - Decoupled codebase for easier feature addition and navigation.
+  - Clear separation between data, domain, and presentation layers.
 
-- `mockito-unit-test` Creating a unit test using mockito library.
-- `mockk-unit-test` Creating a unit test using mockk library.
-- `mock-web-server-unit-test` Mocking server request while testing the repository.
+## Modularization Strategy
+This project follows a hybrid modularization approach combining **feature-based** and **component-based** modules. This structure enhances code maintainability, testability, and scalability.
+
+More about the approach [here](https://medium.com/@ahmedeelkhami/multi-module-architecture-in-android-5f76373a84a7).
+
